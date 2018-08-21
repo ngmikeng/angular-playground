@@ -23,6 +23,13 @@ export class HomeComponent implements OnInit {
       .subscribe((post) => {
         console.log(post);
         this.listPosts.push(post);
+
+        this.listPosts.sort((first, second) => {
+          const postIds = this.homeService.getPostIds();
+          const firstIdIndex = postIds.findIndex((id: number) => id === first.id);
+          const secondIdIndex = postIds.findIndex((id: number) => id === second.id);
+          return firstIdIndex - secondIdIndex;
+        });
       });
   }
 

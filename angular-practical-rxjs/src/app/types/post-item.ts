@@ -1,5 +1,5 @@
 export class PostItem {
-  id: string;
+  id: number;
   by: string;
   score: number;
   time: number;
