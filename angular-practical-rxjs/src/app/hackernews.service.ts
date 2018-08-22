@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, forkJoin } from 'rxjs';
 import { tap, catchError, mergeMap, concatMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { PostItem } from '../types/post-item';
-import { MessageService } from '../message.service';
+import { PostItem } from './types/post-item';
+import { MessageService } from './message.service';
 
 const LIMIT_ITEMS = 10;
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class HackernewsService {
   private apiUrl = 'https://hacker-news.firebaseio.com/v0';
   postIds: number[] = [];
 
@@ -66,6 +66,16 @@ export class HomeService {
       )
   }
 
+  getListPostsForkJoin(): Observable<PostItem[]> {
+    return this.getIds()
+      .pipe(
+        mergeMap((ids: number[]) => {
+          let listIds = ids.slice(0, LIMIT_ITEMS);
+          return forkJoin(...listIds.map(id => <Observable<PostItem>> this.http.get<PostItem>(`${this.apiUrl}/item/${id}.json`)));
+        }),
+      )
+  }
+
   private getIds(): Observable<number[]> {
     return this.http.get<number[]>(`${this.apiUrl}/topstories.json`)
       .pipe(
@@ -86,5 +96,4 @@ export class HomeService {
       concatMap(id => <Observable<PostItem>> this.http.get<PostItem>(`${this.apiUrl}/item/${id}.json`))
     )
   }
-
 }

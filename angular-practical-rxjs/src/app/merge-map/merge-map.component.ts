@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from './home.service';
+import { HackernewsService } from '../hackernews.service';
 import { PostItem } from '../types/post-item';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-merge-map',
+  templateUrl: './merge-map.component.html',
+  styleUrls: ['./merge-map.component.css']
 })
-export class HomeComponent implements OnInit {
+export class MergeMapComponent implements OnInit {
   listPosts: PostItem[] = [];
 
   constructor(
-    private homeService: HomeService
+    private hackernewsService: HackernewsService
   ) { }
 
   ngOnInit() {
@@ -19,13 +19,12 @@ export class HomeComponent implements OnInit {
   }
 
   getListPosts() {
-    this.homeService.getListPosts()
+    this.hackernewsService.getListPosts()
       .subscribe((post) => {
-        console.log(post);
         this.listPosts.push(post);
-
+        // sort by ids
         this.listPosts.sort((first, second) => {
-          const postIds = this.homeService.getPostIds();
+          const postIds = this.hackernewsService.getPostIds();
           const firstIdIndex = postIds.findIndex((id: number) => id === first.id);
           const secondIdIndex = postIds.findIndex((id: number) => id === second.id);
           return firstIdIndex - secondIdIndex;

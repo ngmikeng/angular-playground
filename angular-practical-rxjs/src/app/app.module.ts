@@ -5,14 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
+import { ForkJoinComponent } from './fork-join/fork-join.component';
+import { MergeMapComponent } from './merge-map/merge-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ConcatMapComponent
+    ConcatMapComponent,
+    ForkJoinComponent,
+    MergeMapComponent
   ],
   imports: [
     BrowserModule,
