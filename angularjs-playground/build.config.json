@@ -1,0 +1,23 @@
+{
+  "sources": [
+    "./src/app.module.js",
+    "./src/**/*.module.js",
+    "./src/**/*.js"
+  ],
+  "vendors": [
+    "./bower_components/jquery/dist/jquery.js",
+    "./node_modules/angular/angular.js",
+    "./node_modules/angular-ui-router/release/angular-ui-router.js",
+    "./bower_components/slick-carousel/slick/slick.js",
+    "./bower_components/angular-slick-carousel/dist/angular-slick.js"
+  ],
+  "styles": [
+    "./src/**/*.css",
+    "./bower_components/slick-carousel/slick/slick.css",
+    "./bower_components/slick-carousel/slick/slick-theme.css"
+  ],
+  "templates": [
+    "./src/**/*.html",
+    "!./src/index.html"
+  ]
+}

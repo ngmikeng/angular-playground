@@ -1,0 +1,15 @@
+<div>
+  <h1>{{ vm.header }}</h1>
+</div>
+<div>
+  <slick settings="vm.slickConfig" ng-if="vm.slickConfig.isLoaded">
+    <div ng-repeat="num in vm.numbers" style="border: 1px solid brown">
+      <h4>{{ num.label }}</h4>
+    </div>
+  </slick>
+  
+  <button type="button" class="" ng-click="vm.slickPrev()">Prev</button>
+  <button type="button" class="" ng-click="vm.slickNext()">Next</button>
+  <button type="button" class="" ng-click="vm.addNew()">Add</button>
+  
+</div>

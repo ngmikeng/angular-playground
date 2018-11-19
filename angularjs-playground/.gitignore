@@ -1,0 +1,18 @@
+# compiled output
+dist
+build
+
+# dependencies
+node_modules
+bower_components
+vendor
+
+# misc
+npm-debug.log
+yarn-error.log
+testem.log
+package-lock.json
+
+# System Files
+.DS_Store
+Thumbs.db
